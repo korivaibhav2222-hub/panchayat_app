@@ -1,0 +1,126 @@
+<SplashScreen>:
+    BoxLayout:
+        Label:
+            text: 'PANCHAYAT\nCreated by Vaibhav\n5 sec Splash'
+            font_size: 24
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        TextInput:
+            id: user_input
+            hint_text: 'Username or Mobile'
+            size_hint_y: None
+            height: 50
+        TextInput:
+            id: pass_input
+            hint_text: 'Password'
+            password: True
+            size_hint_y: None
+            height: 50
+        Label:
+            id: err
+            text: ''
+            color: 1,0.2,0.2,1
+        Button:
+            text: 'Login'
+            on_press: root.login()
+        Button:
+            text: 'New? ID Banao'
+            on_press: app.root.current='signup'
+
+<SignupScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        TextInput:
+            id: username
+            hint_text: 'Username (unique)'
+            size_hint_y: None
+            height: 50
+        TextInput:
+            id: mobile
+            hint_text: 'Mobile'
+            size_hint_y: None
+            height: 50
+        Label:
+            id: err
+            text: ''
+            color: 1,0.2,0.2,1
+        Button:
+            text: 'Next -> Password'
+            on_press: root.next_step()
+
+<SetPassScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        TextInput:
+            id: pass1
+            hint_text: 'Password'
+            password: True
+            size_hint_y: None
+            height: 50
+        TextInput:
+            id: pass2
+            hint_text: 'Confirm'
+            password: True
+            size_hint_y: None
+            height: 50
+        Label:
+            id: err
+            text: ''
+        Button:
+            text: 'Create ID'
+            on_press: root.create_id()
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: welcome
+            size_hint_y: None
+            height: 40
+        TextInput:
+            hint_text: 'Search username/mobile'
+            size_hint_y: None
+            height: 50
+            on_text: root.search(self.text)
+        ScrollView:
+            size_hint_y: 0.3
+            BoxLayout:
+                id: search_box
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+        ScrollView:
+            BoxLayout:
+                id: friends_box
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+
+<ChatScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            Label:
+                id: header
+            Button:
+                text: 'Back'
+                size_hint_x: None
+                width: 80
+                on_press: app.root.current='main'
+        BoxLayout:
+            TextInput:
+                id: msg_input
+                hint_text: 'Message...'
+            Button:
+                text: 'Send'
+                size_hint_x: None
+                width: 80
+                on_press: root.send()
